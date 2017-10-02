@@ -2,14 +2,15 @@
 
 pipeline {
 
-    agent {
-        docker {
-            image 'node'
-            args '-u root'
-        }
-    }
+    agent any
 
     stages {
+         stage('install') {
+            steps {
+                echo 'Installing node...'
+                sh 'sudo docker pull node'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building...'
