@@ -2,25 +2,24 @@
 
 pipeline {
 
-    agent any
+    agent {
+        docker {
+            image 'node'
+            args '-u root'
+        }
+    }
 
     stages {
-         stage('install') {
-            steps {
-                echo 'Installing node...'
-                sh 'sudo docker pull node'
-            }
-        }
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'sudo npm install'
+                sh 'npm install'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'sudo npm test'
+                sh 'npm test'
             }
         }
     }
