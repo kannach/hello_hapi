@@ -8,7 +8,7 @@ pipeline {
          stage('install') {
             steps {
                 echo 'Installing node...'
-                sh 'sudo docker pull node'
+                sh 'sudo docker pull node -u root'
             }
         }
         stage('Build') {
